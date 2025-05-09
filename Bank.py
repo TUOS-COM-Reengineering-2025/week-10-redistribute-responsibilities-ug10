@@ -9,8 +9,6 @@ class Bank:
     def __init__(self):
         self.accounts = []
         self.customers = []
-        self.customer_addresses = {}  # key: customer, value: address
-        self.customer_phone_numbers = {}  # key: customer, value: phone number
         self.branches = []
         self.branch_opening_times = {}  # key: branch, value: opening time
         self.payroll = None
@@ -34,8 +32,6 @@ class Bank:
 
         if customer not in self.customers:
             self.customers.append(customer)
-            self.customer_addresses[customer] = "NO ADDRESS"  # default address
-            self.customer_phone_numbers[customer] = "NO PHONE NUMBER"  # default phone number
 
     def obtain_balance(self, account: Account):
         return account.get_balance()

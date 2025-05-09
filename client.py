@@ -33,13 +33,13 @@ def client():
     assert branch_sheffield in bank.branches
     assert staff_john in branch_sheffield.get_staff()
 
-    customer_alice = Customer(name="Alice")
+    customer_alice = Customer(name="Alice", address="NO ADDRESS", phone_number="NO PHONE NUMBER")
     account_alice = Account()
     bank.setup_new_account(account=account_alice, customer=customer_alice)
     assert account_alice in bank.accounts
     assert customer_alice in bank.customers
-    assert bank.customer_addresses[customer_alice] == "NO ADDRESS"
-    assert bank.customer_phone_numbers[customer_alice] == "NO PHONE NUMBER"
+    assert customer_alice.get_address() == "NO ADDRESS"
+    assert customer_alice.get_phone_number() == "NO PHONE NUMBER"
 
     account_alice_new = Account()
     bank.setup_new_account(account=account_alice_new, customer=customer_alice)

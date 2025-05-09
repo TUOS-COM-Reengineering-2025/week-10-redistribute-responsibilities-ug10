@@ -54,4 +54,4 @@ class Bank:
 
     def change_payroll_date(self, payroll: Payroll, date: str, staff_category: str):
         self.payroll = payroll
-        self.payroll.get_staff_category_pay_schedule(staff_category).set_pay_date(date)
+        self.payroll.set_pay_date(staff_category, date)

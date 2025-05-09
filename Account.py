@@ -22,3 +22,17 @@ class Account:
 
     def set_interest_rate(self, rate):
         self.interest_rate = rate
+
+    def add_funcs(self, amount: float):
+        balance = self.get_balance()
+        self.set_balance(balance + amount)
+
+    def add_interest(self):
+        balance = self.get_balance()
+        interest_rate = self.get_interest_rate()
+        interest = balance * interest_rate
+        self.set_balance(balance + interest)
+
+    def close_account(self):
+        self.set_customer(None)
+        self.set_balance(0)

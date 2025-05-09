@@ -9,8 +9,6 @@ class Bank:
     def __init__(self):
         self.accounts = []
         self.customers = []
-        self.customer_addresses = {}  # key: customer, value: address
-        self.customer_phone_numbers = {}  # key: customer, value: phone number
         self.branches = []
         self.payroll = None
 
@@ -32,27 +30,20 @@ class Bank:
 
         if customer not in self.customers:
             self.customers.append(customer)
-            self.customer_addresses[customer] = "NO ADDRESS"  # default address
-            self.customer_phone_numbers[customer] = "NO PHONE NUMBER"  # default phone number
 
     def obtain_balance(self, account: Account):
         return account.get_balance()
 
     def add_interest(self, account: Account):
-        balance = account.get_balance()
-        interest_rate = account.get_interest_rate()
-        interest = balance * interest_rate
-        account.set_balance(balance + interest)
+        account.add_interest()
 
     def add_funds(self, account: Account, amount: float):
-        balance = account.get_balance()
-        account.set_balance(balance + amount)
+        account.add_funcs(amount)
 
     def close_account(self, account: Account):
-        account.set_customer(None)
-        account.set_balance(0)
+        account.close_account()
         self.accounts.remove(account)
 
     def change_payroll_date(self, payroll: Payroll, date: str, staff_category: str):
         self.payroll = payroll
-        self.payroll.get_staff_category_pay_schedule(staff_category).set_pay_date(date)
+        self.payroll.set_pay_date(staff_category, date)
